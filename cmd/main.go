@@ -4,7 +4,7 @@ package main
 import (
     "fmt"
     "os"
-    "github.com/yourusername/aoc2025/days/day01"
+    "github.com/eliaskounakas/aoc2025/days/day04"
 )
 
 func main() {
