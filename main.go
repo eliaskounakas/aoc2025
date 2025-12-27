@@ -1,9 +1,9 @@
 package main
 
 import (
+	"aoc-2025/solutions" // Update with your module name
 	"fmt"
 	"os"
-	"aoc-2025/solutions" // Update with your module name
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	case "1":
 		solutions.Day01()
 	case "2":
-		// solutions.Day02()
+		solutions.Day02()
 	default:
 		fmt.Printf("Day %s not implemented yet\n", day)
 	}

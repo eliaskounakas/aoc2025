@@ -3,6 +3,7 @@ package util
 import (
 	"bufio"
 	"os"
+	"strings"
 )
 
 func ReadInput(path string) []string {
@@ -15,4 +16,10 @@ func ReadInput(path string) []string {
 		lines = append(lines, scanner.Text())
 	}
 	return lines
+}
+
+func ReadCommaSeperatedInput(path string) []string {
+	bytes, _ := os.ReadFile(path)
+
+	return strings.Split(string(bytes), ",")
 }
