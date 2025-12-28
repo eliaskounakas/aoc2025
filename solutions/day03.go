@@ -17,7 +17,7 @@ func solveDay3Part1(input []string) int {
 	totalJoltage := 0
 
 	for _, s := range input {
-		totalJoltage += findVoltage(s, 1, 0)
+		totalJoltage += findJoltage(s, 1, 0)
 	}
 
 	return totalJoltage
@@ -27,13 +27,13 @@ func solveDay3Part2(input []string) int {
 	totalJoltage := 0
 
 	for _, s := range input {
-		totalJoltage += findVoltage(s, 11, 0)
+		totalJoltage += findJoltage(s, 11, 0)
 	}
 
 	return totalJoltage
 }
 
-func findVoltage(s string, level int, index int) int {
+func findJoltage(s string, level int, index int) int {
 	max := int(s[index] - '0')
 	maxIndex := index
 
@@ -49,5 +49,5 @@ func findVoltage(s string, level int, index int) int {
 		return max
 	}
 
-	return max*int(math.Pow(10, float64(level))) + findVoltage(s, level-1, maxIndex+1)
+	return max*int(math.Pow(10, float64(level))) + findJoltage(s, level-1, maxIndex+1)
 }
