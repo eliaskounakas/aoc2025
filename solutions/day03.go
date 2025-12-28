@@ -3,6 +3,7 @@ package solutions
 import (
 	util "aoc-2025/utils"
 	"fmt"
+	"math"
 )
 
 func Day03() {
@@ -16,42 +17,37 @@ func solveDay3Part1(input []string) int {
 	totalJoltage := 0
 
 	for _, s := range input {
-		max := int(s[0] - '0')
-		maxIndex := 0
-
-		for i := range s {
-			if i >= len(s)-1 {
-				break
-			}
-
-			curr := int(s[i] - '0')
-			if curr > max {
-				max = curr
-				maxIndex = i
-			}
-		}
-
-		firstDigit := max
-
-		max = int(s[maxIndex+1] - '0')
-		for i := maxIndex + 2; i < len(s); i++ {
-			curr := int(s[i] - '0')
-			if curr > max {
-				max = curr
-			}
-		}
-
-		secondDigit := max
-
-		fmt.Println(s)
-		fmt.Println(firstDigit, secondDigit)
-
-		totalJoltage += firstDigit*10 + secondDigit
+		totalJoltage += findVoltage(s, 1, 0)
 	}
 
 	return totalJoltage
 }
 
 func solveDay3Part2(input []string) int {
-	return 0
+	totalJoltage := 0
+
+	for _, s := range input {
+		totalJoltage += findVoltage(s, 11, 0)
+	}
+
+	return totalJoltage
+}
+
+func findVoltage(s string, level int, index int) int {
+	max := int(s[index] - '0')
+	maxIndex := index
+
+	for ; index < len(s)-level; index++ {
+		curr := int(s[index] - '0')
+		if curr > max {
+			max = curr
+			maxIndex = index
+		}
+	}
+
+	if level == 0 {
+		return max
+	}
+
+	return max*int(math.Pow(10, float64(level))) + findVoltage(s, level-1, maxIndex+1)
 }
