@@ -19,6 +19,8 @@ func main() {
 		solutions.Day01()
 	case "2":
 		solutions.Day02()
+	case "3":
+		solutions.Day03()
 	default:
 		fmt.Printf("Day %s not implemented yet\n", day)
 	}
